@@ -9,5 +9,4 @@ const conetion = mysql.createConnection({
 });
 
 conetion.connect()
-
 export default conetion;
