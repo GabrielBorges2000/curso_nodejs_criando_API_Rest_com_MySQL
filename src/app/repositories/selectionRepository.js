@@ -1,56 +1,31 @@
-import conetion from "../database/conetion.js";
+import { consulta } from "../database/conetion.js";
 
 class SeletionRepository {
 
     create(ponto) {
         const sql = 'INSERT INTO ponto SET ?;'
-        return new Promise((resolve, reject) => {
-            conetion.query(sql, ponto, (error, result) => {
-                if (error) return reject('Could not create')
-                return resolve(JSON.parse(JSON.stringify(result)))
-            })
-        })
-    }
+        return consulta(sql, ponto, 'Could not create');
+    };
 
     findAll() {
         const sql = 'SELECT * FROM ponto;'
-        return new Promise((resolve, reject) => {
-            conetion.query(sql, (error, result) => {
-                if (error) return reject('Could not find')
-                return resolve(JSON.parse(JSON.stringify(result)))
-            })
-        })
-    }
+        return consulta(sql, 'Could not find');
+    };
 
     findById(id) {
         const sql = 'SELECT * FROM ponto WHERE id=?;'
-        return new Promise((resolve, reject) => {
-            conetion.query(sql, id, (error, result) => {
-                if (error) return reject('Could not find id')
-                return resolve(JSON.parse(JSON.stringify(result)))
-            })
-        })
-    }
+        return consulta(sql, id, 'Could not find id');
+    };
 
     update(ponto, id) {
         const sql = 'UPDATE ponto SET ? WHERE id=?;'
-        return new Promise((resolve, reject) => {
-            conetion.query(sql, [ponto, id,], (error, result) => {
-                if (error) return reject("Couldn't update")
-                return resolve(JSON.parse(JSON.stringify(result)))
-            })
-        })
-    }
+        return consulta(sql, [ponto, id,], "Couldn't update");
+    };
 
     delete(id) {
         const sql = 'DELETE FROM ponto WHERE id=?;'
-        return new Promise((resolve, reject) => {
-            conetion.query(sql, id, (error, result) => {
-                if (error) return reject("Couldn't delete")
-                return resolve(JSON.parse(JSON.stringify(result)))
-            })
-        })
-    }
-}
+        return consulta(sql, id, "Couldn't delete");
+    };
+};
 
 export default new SeletionRepository();
