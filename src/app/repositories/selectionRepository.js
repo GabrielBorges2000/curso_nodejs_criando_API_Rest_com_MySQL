@@ -1,4 +1,5 @@
-import { consulta } from "../database/conetion.js";
+import { consulta } from "../database/dbQuery.js";
+
 
 class SeletionRepository {
 
